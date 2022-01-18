@@ -11,7 +11,7 @@ from merge import merge
 
 
 
-def sample_check(path):
+def sample_check(path: str):
 	sample_list = [8000, 16000, 32000, 48000]
 	wf = wave.open(path, "rb")
 	sample = wf.getframerate()
@@ -29,14 +29,13 @@ def sample_check(path):
 		reset_sample(path,new_sample)
 	
 
-def recognition(path):
+def recognition(path: str):
 	audio_mp3 = path
 	name = audio_mp3.split('/')[-1]
-	name = name.replace('.mp3','')
-
+	#name = name.replace('.mp3','')
 	audio_wav = conv_mp3_to_wav(str(audio_mp3))
-	print(type(audio_wav))
 	result = recognize(str(audio_wav))
+	return result
 
 
 

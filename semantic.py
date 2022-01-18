@@ -1,7 +1,7 @@
 import spacy
 import json
 nlp = spacy.load('ru_core_news_lg')
-with open('/answers.json') as f:
+with open('./answers.json') as f:
     answer_types = json.load(f)
 
 '''
@@ -14,11 +14,9 @@ def check_answer_type(answer: str):
     distance = 0
     right_key = ""
     for key in answer_types:
-        print(key)
         for item in answer_types[key]:
-            print(item)
             example = nlp(item)
-            print(answer.similarity(example))
+            #print(answer.similarity(example))
             if answer.similarity(example) > distance:
                 distance = answer.similarity(example)
                 right_key = key
@@ -28,4 +26,4 @@ def check_answer_type(answer: str):
 
 
 
-check_answer_type('хорошо')
+#check_answer_type('хорошо')
