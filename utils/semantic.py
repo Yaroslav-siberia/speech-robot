@@ -1,7 +1,10 @@
 import spacy
 import json
+import os
+
 nlp = spacy.load('ru_core_news_lg')
-with open('answers.json') as f:
+answers_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "answers.json")
+with open(answers_path) as f:
     answer_types = json.load(f)
 
 '''
@@ -11,8 +14,6 @@ def lemmatization(sentence1: spacy.tokens.doc.Doc, sentence2: spacy.tokens.doc.D
     sentence1 = nlp(" ".join([word.lemma_ for word in sentence1]))
     sentence2 = nlp(" ".join([word.lemma_ for word in sentence2]))
     return sentence1, sentence2
-
-lemmatization('От топота копыт пыль по полю летит. Собака злится и рычит')
 
 def check_answer_type(answer: str, lemmatizing = False )->str:
     answer = nlp(answer)

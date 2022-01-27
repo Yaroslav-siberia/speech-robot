@@ -3,13 +3,15 @@ import os
 import wave
 import json
 
+voskmodel_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "vosk-model")
+
 """
 Модуль, осуществляющий перевод аудиофрагмента в текст, посредством использования vosk-api, построенной на системе распознавания kaldi
 Принимает: строку - путь к файлу ФОРМАТА WAV
 Возвращает: результат перевода в JSON формате
 """
 def recognize(str_wav:str):
-	if not os.path.exists("model"):
+	if not os.path.exists(voskmodel_path):
 	    print ("Please download the model (vosk-model-ru-0.10.zip) from https://github.com/alphacep/vosk-api/blob/master/doc/models.md and unpack as 'model' in the current folder.")
 	    exit (1)
 	wf = wave.open(str_wav, "rb")
@@ -28,7 +30,7 @@ def recognize(str_wav:str):
 	#список для объединения результатов
 	result = list()
 	#Обученная модель для русского языка 
-	model = Model("model")
+	model = Model(voskmodel_path)
 	#wf.getframerate()->Возвращает частоту дискретизации.
 	rec = KaldiRecognizer(model, wf.getframerate())	
 	while True:

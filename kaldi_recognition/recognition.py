@@ -3,11 +3,11 @@ import wave
 import shutil
 import os
 
-from convert import conv_mp3_to_wav
-from recognize import recognize 
-from infile import save_in_file
-from downsample import reset_sample
-from merge import merge
+from .convert import conv_mp3_to_wav
+from .recognize import recognize
+from .infile import save_in_file
+from .downsample import reset_sample
+from .merge import merge
 
 
 

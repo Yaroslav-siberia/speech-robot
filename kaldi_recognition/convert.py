@@ -13,7 +13,7 @@ import wave
 Возвращает: строку - путь к конвертированному wav файлу
 """
 
-def conv_mp3_to_wav(mp3:str):
+def conv_mp3_to_wav(mp3:str)->str:
 	str_mp3 = mp3
 	str_wav = str_mp3.replace('mp3','wav')
 	sound = pydub.AudioSegment.from_mp3(str_mp3)
