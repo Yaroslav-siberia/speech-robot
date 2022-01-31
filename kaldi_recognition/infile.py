@@ -1,6 +1,6 @@
 import json
 
-def save_in_file(json_obj, path):		
+def save_in_file(json_obj, path:str):
 	f = open(path, 'w')
 	#вытаскиваю результат из строки в JSON формате
 	jsonData = json.loads(json_obj)

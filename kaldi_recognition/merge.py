@@ -2,7 +2,7 @@ import re
 
 inaccuracy = 0.1
 
-def load_file(file_name):
+def load_file(file_name:str):
     '''
     Возвращает копию файла
     :param file_name:  str  -  имя файла
@@ -14,7 +14,7 @@ def load_file(file_name):
     return text
 
 
-def parse_words(text):
+def parse_words(text:str):
     '''
     Парсинг файла текста
     :param text:  str  -  копия файла с текстом

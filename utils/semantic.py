@@ -23,18 +23,21 @@ def check_answer_type(answer: str, lemmatizing = False )->str:
     for key in answer_types:
         for item in answer_types[key]:
             example = nlp(item)
-            if answer.similarity(example) > distance:
-                distance = answer.similarity(example)
-                right_key = key
-                if distance == 1.0:
-                    return right_key
-            # если включена лемматизация то повторяем процедуру поиска расстояния но с лемматизированными выраженриями
-            if lemmatizing == True:
-                answer_lem, example_lem = lemmatizing(answer,example)
-                if answer_lem.similarity(example_lem) > distance:
-                    distance = answer_lem.similarity(answer_lem)
+            try:
+                if answer.similarity(example) > distance:
+                    distance = answer.similarity(example)
                     right_key = key
                     if distance == 1.0:
                         return right_key
+                # если включена лемматизация то повторяем процедуру поиска расстояния но с лемматизированными выраженриями
+                if lemmatizing == True:
+                    answer_lem, example_lem = lemmatizing(answer,example)
+                    if answer_lem.similarity(example_lem) > distance:
+                        distance = answer_lem.similarity(answer_lem)
+                        right_key = key
+                        if distance == 1.0:
+                            return right_key
+            except Exception as e:
+                print(f"{e} ")
     return right_key
 

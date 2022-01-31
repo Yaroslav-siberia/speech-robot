@@ -4,7 +4,7 @@ import shutil
 import os
 
 from .convert import conv_mp3_to_wav
-from .recognize import recognize
+from .recognize import recognize_file, recognize_stream
 from .infile import save_in_file
 from .downsample import reset_sample
 from .merge import merge
@@ -29,12 +29,16 @@ def sample_check(path: str):
 		reset_sample(path,new_sample)
 	
 
-def recognition(path: str):
+def file_recognition(path: str):
 	audio_mp3 = path
 	name = audio_mp3.split('/')[-1]
 	#name = name.replace('.mp3','')
 	audio_wav = conv_mp3_to_wav(str(audio_mp3))
-	result = recognize(str(audio_wav))
+	result = recognize_file(audio_wav)
+	return
+
+def stream_recognition(stream, rate = 16000):
+	result = recognize_stream(stream, rate)
 	return result
 
 
