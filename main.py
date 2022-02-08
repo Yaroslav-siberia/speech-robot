@@ -19,7 +19,7 @@ model = Model(r"/home/ysiberia/Документы/GitHub/speech_robot/kaldi_reco
 
 p = pyaudio.PyAudio()
 stream1 = p.open(
-        format=pyaudio.paInt16,
+        format=pyaudio.paInt32,
         channels=1,
         rate=16000,
         input=True,

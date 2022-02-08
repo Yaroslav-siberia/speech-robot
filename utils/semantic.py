@@ -16,6 +16,14 @@ def lemmatization(sentence1: spacy.tokens.doc.Doc, sentence2: spacy.tokens.doc.D
     return sentence1, sentence2
 
 def check_answer_type(answer: str, lemmatizing = False )->str:
+    '''
+    Данная функция находит семантическое расстояние между полученным ответом и имеющимися шаблонами ответов из
+    answers.json. Чем ближе значение к 1 тем они по смыслу ближе.
+    если наилучший результат < 0.5 то считаем ничего близкого не нашли и ставим флаг "misunderstanding"
+    :param answer:
+    :param lemmatizing:
+    :return:
+    '''
     answer = nlp(answer)
     #type(answer) = spacy.tokens.doc.Doc
     distance = 0
@@ -39,5 +47,10 @@ def check_answer_type(answer: str, lemmatizing = False )->str:
                             return right_key
             except Exception as e:
                 print(f"{e} ")
+    #  если
+    #
+    #
+    if distance < 0.5:
+        right_key = "misunderstanding"
     return right_key
 
